@@ -1,0 +1,28 @@
+{
+  "name": "mySeverlessProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+    "file-type": "^16.0.1",
+    "i": "^0.3.6",
+    "npm": "^6.14.9",
+    "serverless-s3-sync": "^1.15.0",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satouyuuki/serverless_framework_s3_upload.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satouyuuki/serverless_framework_s3_upload/issues"
+  },
+  "homepage": "https://github.com/satouyuuki/serverless_framework_s3_upload#readme"
+}
