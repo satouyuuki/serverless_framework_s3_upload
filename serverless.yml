@@ -1,0 +1,29 @@
+service: myseverlessproject
+app: myserverlessproject1
+org: personlink
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: default
+
+plugins: 
+  - serverless-s3-sync
+
+custom:
+  s3Sync: 
+    - bucketName: yuuki-aws-dev.work
+      localDir: UploadData
+
+functions:
+  hello:
+    handler: handler.hello
+
+resources: 
+  Resources:
+    DemoBucketUpload:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: yuuki-aws-dev.work
