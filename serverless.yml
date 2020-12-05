@@ -15,9 +15,13 @@ provider:
       Action: 
         - dynamodb:*
       Resource: '*'
+  apiGateway:
+    shouldStartNameWithService: true
 plugins: 
   - serverless-s3-sync
   - serverless-webpack
+  - serverless-dynamodb-local
+  - serverless-offline
 
 package: 
   individually: true
@@ -27,7 +31,19 @@ custom:
   s3Sync: 
     - bucketName: yuuki-aws-dev.work
       localDir: UploadData
-
+  dynamodb:
+    stages:
+      - test
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      development:
+        sources:
+          - table: jankens
+            sources: [./migrations/jankens.json]
 functions:
   getUser:
     handler: lambdas/endpoints/getUser.handler
@@ -57,14 +73,31 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: yuuki-aws-dev.work
-    MyDynamoDbTable:
+    JankensTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:custom.tableName}
+        TableName: jankens
         AttributeDefinitions:
-          - AttributeName: ID
+          - AttributeName: player
             AttributeType: S
+          - AttributeName: unixtime
+            AttributeType: N
         KeySchema:
-          - AttributeName: ID
+          - AttributeName: player
             KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
+          - AttributeName: unixtime
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    # MyDynamoDbTable:
+    #   Type: AWS::DynamoDB::Table
+    #   Properties:
+    #     TableName: ${self:custom.tableName}
+    #     AttributeDefinitions:
+    #       - AttributeName: ID
+    #         AttributeType: S
+    #     KeySchema:
+    #       - AttributeName: ID
+    #         KeyType: HASH
+    #     BillingMode: PAY_PER_REQUEST

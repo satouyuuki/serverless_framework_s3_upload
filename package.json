@@ -1,0 +1,29 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+    "serverless-s3-sync": "^1.15.0",
+    "serverless-webpack": "^5.3.5",
+    "webpack": "^5.10.0"
+  },
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.30",
+    "serverless-offline": "^6.8.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satouyuuki/serverless_framework_s3_upload.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satouyuuki/serverless_framework_s3_upload/issues"
+  },
+  "homepage": "https://github.com/satouyuuki/serverless_framework_s3_upload#readme"
+}
