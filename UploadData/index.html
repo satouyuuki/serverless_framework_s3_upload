@@ -6,6 +6,7 @@
   <!--   Replace SDK_VERSION_NUMBER with the current SDK version number -->
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.802.0.min.js"></script>
   <script src="./s3_photoExample.js"></script>
+  <script src="./server.js"></script>
   <script>
     function getHtml(template) {
       return template.join('\n');
@@ -16,6 +17,11 @@
 
 <body>
   <h1>My Photo Albums App</h1>
+  <form action="" name="form1">
+    <input type="text" name="param">
+    <button type="submit">送信</button>
+  </form>
+  <div id="postList"></div>
   <div id="app"></div>
 </body>
 
